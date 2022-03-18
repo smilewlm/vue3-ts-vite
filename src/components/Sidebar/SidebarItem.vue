@@ -1,7 +1,9 @@
 <template>
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container" v-if="!item.meta || !item.meta.hidden">
     <!-- 只有一个子路由 -->
-    <template v-if="theOnlyOneChildRoute && !theOnlyOneChildRoute.children">
+    <template
+      v-if="theOnlyOneChildRoute && (!theOnlyOneChildRoute.children || theOnlyOneChildRoute.noShowingChildren)"
+    >
       <sidebar-item-link
         v-if="theOnlyOneChildRoute.meta"
         :to="resolvePath(theOnlyOneChildRoute.path)"
@@ -80,6 +82,7 @@ export default {
       return {
         ...props.item,
         path: '', // resolvePath避免resolve拼接时 拼接重复
+        noShowingChildren: true,
       }
     })
     // menu icon

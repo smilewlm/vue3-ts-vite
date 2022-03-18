@@ -5,9 +5,9 @@
       class="sidebar-container-menu"
       mode="vertical"
       :default-active="activeMenu"
-      :background-color="scssVariables.menuBg"
-      :text-color="scssVariables.menuText"
-      :active-text-color="scssVariables.menuActiveText"
+      background-color="#304156"
+      text-color="#bfcbd9"
+      active-text-color="#409EFF"
       :collapse="isCollapse"
       :collapse-transition="true"
     >
