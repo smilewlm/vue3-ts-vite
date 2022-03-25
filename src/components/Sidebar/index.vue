@@ -34,7 +34,10 @@ export default {
   setup() {
     const route = useRoute()
     const activeMenu = computed(() => {
-      const { path } = route
+      const { path, meta } = route
+      if(meta.activeMenu) {
+        return meta.activeMenu
+      }
       return path
     })
 

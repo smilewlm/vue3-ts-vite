@@ -1,9 +1,7 @@
 <template>
   <div class="sidebar-item-container" v-if="!item.meta || !item.meta.hidden">
     <!-- 只有一个子路由 -->
-    <template
-      v-if="theOnlyOneChildRoute && (!theOnlyOneChildRoute.children || theOnlyOneChildRoute.noShowingChildren)"
-    >
+    <template v-if="isRenderSingleRoute && theOnlyOneChildRoute">
       <sidebar-item-link
         v-if="theOnlyOneChildRoute.meta"
         :to="resolvePath(theOnlyOneChildRoute.path)"
@@ -82,9 +80,12 @@ export default {
       return {
         ...props.item,
         path: '', // resolvePath避免resolve拼接时 拼接重复
-        noShowingChildren: true,
+        // noShowingChildren: true,
       }
     })
+
+    // 是否有可渲染子路由
+    const noShowingChildren = computed(() => showingChildNumber.value === 0)
     // menu icon
     const icon = computed(() => {
       // 子路由 如果没有icon就用父路由的
@@ -101,10 +102,20 @@ export default {
       return path.resolve(props.basePath, childPath)
     }
 
+    const alwaysShowRootMenu = computed(
+      () => props.item.meta && props.item.meta.alwaysShow
+    )
+    const isRenderSingleRoute = computed(
+      () =>
+        !alwaysShowRootMenu.value &&
+        (!theOnlyOneChildRoute.value?.children || noShowingChildren.value)
+    )
+
     return {
       theOnlyOneChildRoute,
       icon,
       resolvePath,
+      isRenderSingleRoute,
     }
   },
 }

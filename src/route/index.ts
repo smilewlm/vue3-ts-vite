@@ -14,7 +14,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: 'Documentation',
           icon: 'documentation',
-          hidden: true
+          // hidden: true
         }
       }
     ]
@@ -30,7 +30,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "guide" */ '@/views/guide/index.vue'),
         meta: {
           title: 'Guide',
-          icon: 'guide'
+          icon: 'guide',
+          // activeMenu: '/documentation/index'
         }
       }
     ]
@@ -41,7 +42,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     redirect: '/system/user',
     meta: {
       title: 'System',
-      icon: 'lock'
+      icon: 'lock',
+      alwaysShow: true
     },
     children: [
       {
@@ -50,7 +52,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: 'Menu Management',
           icon: 'list',
-          hidden: true
+          // hidden: true
         }
       },
       {
@@ -58,7 +60,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "role" */ '@/views/system/role.vue'),
         meta: {
           title: 'Role Management',
-          icon: 'list'
+          icon: 'list',
+          // hidden: true
         }
       },
       {
@@ -105,6 +108,7 @@ const constantRoutes: Array<RouteRecordRaw> = [
     ]
   }
 ]
+
 
 export const routes = [...constantRoutes, ...asyncRoutes]
 const router = createRouter({
