@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import { ElButton, ElMessage, ElNotification, ElMessageBox, ElMenu, ElMenuItem, ElSubMenu } from 'element-plus'
+import { ElButton, ElMessage, ElNotification, ElMessageBox, ElMenu, ElMenuItem, ElSubMenu, ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
@@ -18,7 +18,9 @@ export default (app: App): void => {
     ElMessageBox,
     ElMenu,
     ElMenuItem,
-    ElSubMenu
+    ElSubMenu,
+    ElBreadcrumb,
+    ElBreadcrumbItem
   ]
   components.forEach(component => {
     app.component(component.name, component)
